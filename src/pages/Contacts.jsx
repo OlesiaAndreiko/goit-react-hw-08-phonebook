@@ -2,6 +2,8 @@ import { ContactList } from "../components/ContactList/ContactList";
 import { Helmet } from "react-helmet-async";
 import { FormContact } from "components/FormContact/FormContact";
 import { Filter } from "components/Filter/Filter";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Contacts(){
     return(
@@ -13,6 +15,7 @@ export default function Contacts(){
             <FormContact />
             <Filter/>
             <ContactList/>
+            <ToastContainer position="top-center" theme="colored" />
         </div>
     )
 }
