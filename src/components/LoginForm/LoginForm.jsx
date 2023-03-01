@@ -5,8 +5,7 @@ export const LoginForm = () => {
     const handleSubmit = event => {
         event.preventDefault();
     
-        const form = event.target.elements;
-    
+        // const form = event.target.elements;    
     }
     
     

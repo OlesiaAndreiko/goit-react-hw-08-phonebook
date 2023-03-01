@@ -3,7 +3,7 @@ export const RegisterForm = () => {
 const handleSubmit = event => {
     event.preventDefault();
 
-    const form = event.target.elements;
+    // const form = event.target.elements;
 
 }
 
