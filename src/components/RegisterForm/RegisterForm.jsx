@@ -7,7 +7,6 @@ const handleSubmit = event => {
 
 }
 
-
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       <label>

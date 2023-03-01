@@ -7,8 +7,7 @@ export const LoginForm = () => {
     
         // const form = event.target.elements;    
     }
-    
-    
+        
       return (
         <form onSubmit={handleSubmit} autoComplete="off">
           

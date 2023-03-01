@@ -1,13 +1,13 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 
 export default function Login(){
     return(
         <div>
-            <Helmet prioritizeSeoTags>
+            {/* <Helmet prioritizeSeoTags>
                 <title>Login to my phonebook</title>
                 <meta property="og:title" content="Login to my phonebook"/>
-            </Helmet>
+            </Helmet> */}
             <LoginForm/>
         </div>
     )

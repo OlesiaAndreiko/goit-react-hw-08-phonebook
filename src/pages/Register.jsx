@@ -1,13 +1,13 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 
 export default function Register(){
     return(
         <div>
-            <Helmet prioritizeSeoTags>
+            {/* <Helmet prioritizeSeoTags>
                 <title>Register to create a phone book</title>
                 <meta property="og:title" content="Register to create a phone book"/>
-            </Helmet>
+            </Helmet> */}
             <RegisterForm/>
         </div>
     )

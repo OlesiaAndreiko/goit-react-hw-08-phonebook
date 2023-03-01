@@ -6,7 +6,7 @@ import { lazy } from 'react';
 // import { FormContact } from './FormContact/FormContact';
 // import { Container } from './Container/Container.styled';
 import { Route, Routes } from 'react-router-dom';
-import { SharedLayout } from './SharedLayout/SharedLayout';
+import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 // import Home from 'pages/Home';
 // import Register from 'pages/Register';
 // import Login from 'pages/Login';
