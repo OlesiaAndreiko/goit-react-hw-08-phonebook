@@ -1,7 +1,7 @@
 import { FilerWrap, FieldCaption, ContactInput } from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFilter } from 'redux/selectors';
-import { searchContact } from '../../redux/filterSlise';
+import { selectFilter } from 'redux/contacts/selectors';
+import { searchContact } from '../../redux/contacts/filterSlise';
 import { Heading } from 'components/Heading/Hading';
 
 export const Filter = () => {
