@@ -1,6 +1,9 @@
 // import { ToastContainer } from 'react-toastify';
-import { lazy } from 'react';
+import { useAuth } from 'hooks';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { refreshUser } from 'redux/auth/operations';
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import { PrivateRoute } from './PrvateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -11,7 +14,16 @@ const LoginPages = lazy(() => import('../pages/Login'));
 const ContactsPages = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Homepages />} />
