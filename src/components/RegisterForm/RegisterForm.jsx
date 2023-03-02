@@ -21,7 +21,7 @@ export const RegisterForm = () => {
     <form onSubmit={handleSubmit} autoComplete="on">
       <label>
         Username
-        <input type="text" name="name" />
+        <input type="text" name="name" autoComplete="username"/>
       </label>
 
       <label>
@@ -31,7 +31,7 @@ export const RegisterForm = () => {
 
       <label>
         Password
-        <input type="password" name="password" />
+        <input type="password" name="password" autoComplete="current-password"/>
       </label>
       <button type="submit">Register</button>
     </form>
