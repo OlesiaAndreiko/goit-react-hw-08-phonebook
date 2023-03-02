@@ -6,8 +6,8 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-  isLoading: false,
-  error: null,
+  isLoadingAuth: false,
+  errorAuth: null,
 };
 
 const authSlice = createSlice({
@@ -15,62 +15,59 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.pending](state, _) {
-      state.isLoading = true;
+      state.isLoadingAuth = true;
     },
     [register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.isLoading = false;
-      state.error = null;
+      state.isLoadingAuth = false;
+      state.errorAuth = null;
     },
     [register.rejected](state, action) {
-      state.isLoading = false;
-        state.error = action.payload;
+      state.isLoadingAuth = false;
+      state.errorAuth = action.payload;
     },
     [logIn.pending](state, _) {
-      state.isLoading = true;
+      state.isLoadingAuth = true;
     },
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.isLoading = false;
-      state.error = null;
+      state.isLoadingAuth = false;
+      state.errorAuth = null;
     },
     [logIn.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
+      state.isLoadingAuth = false;
+      state.errorAuth = action.payload;
     },
     [logOut.pending](state, _) {
-      state.isLoading = true;
+      state.isLoadingAuth = true;
     },
     [logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
-      state.isLoading = false;
-      state.error = null;
+      state.isLoadingAuth = false;
+      state.errorAuth = null;
     },
     [logOut.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
+      state.isLoadingAuth = false;
+      state.errorAuth = action.payload;
     },
     [refreshUser.pending](state) {
       state.isRefreshing = true;
-      state.isLoading = true;
     },
     [refreshUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
-      state.isLoading = false;
-      state.error = null;
+      state.errorAuth = null;
     },
     [refreshUser.rejected](state, action) {
       state.isRefreshing = false;
-      state.isLoading = false;
-      state.error = action.payload;
+      state.errorAuth = action.payload;
     },
   },
 });

@@ -3,6 +3,7 @@ import { logIn } from 'redux/auth/operations';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();
+ 
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -15,15 +16,13 @@ export const LoginForm = () => {
         );
         form.reset();
       };
-        
+     
       return (
-        <form onSubmit={handleSubmit} autoComplete="off">
-          
+        <form onSubmit={handleSubmit} autoComplete="on">          
           <label>
             Email
             <input type="email" name="email" />
-          </label>
-    
+          </label>    
           <label>
             Password
             <input type="password" name="password" />

@@ -4,6 +4,6 @@ export const selectUser = state => state.auth.user;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 
-export const selectAuthError = state => state.auth.error;
+export const selectErrorAuth = state => state.auth.errorAuth;
 
-export const selectAuthIsLoading = state => state.auth.isLoading;
+export const selectIsLoadingAuth = state => state.auth.isLoadingAuth;

@@ -8,7 +8,7 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
     items: [],
-    isLoading: false,
+    isLoadingContacts: false,
     error: null,
   },
   extraReducers: builder =>
@@ -26,14 +26,14 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1);
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
-        state.isLoading = true;
+        state.isLoadingContacts = true;
       })
       .addMatcher(isAnyOf(...getActions('fulfilled')), state => {
-        state.isLoading = false;
+        state.isLoadingContacts = false;
         state.error = null;
       })
       .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
-        state.isLoading = false;
+        state.isLoadingContacts = false;
         state.error = action.payload;
       }),
 });

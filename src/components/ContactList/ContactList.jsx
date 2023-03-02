@@ -5,13 +5,13 @@ import { Heading } from 'components/Heading/Hading';
 import { List } from './ContactList.staled';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
-import { selectError, selectIsLoading } from 'redux/contacts/selectors';
+import { selectErrorContacts, selectIsLoadingContacts } from 'redux/contacts/selectors';
 
 export const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
   const dispatch =useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const isLoadingContacts = useSelector(selectIsLoadingContacts);
+  const errorContacts = useSelector(selectErrorContacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -20,7 +20,7 @@ export const ContactList = () => {
   return (
     <>
       <Heading title={'contacts'} />
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoadingContacts && !errorContacts && <b>Request in progress...</b>}
       {contacts.length ? (
         <List>
           {contacts.map(contact => (
