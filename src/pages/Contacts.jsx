@@ -9,7 +9,7 @@ import { Container } from "components/Container/Container.styled";
 export default function Contacts(){
 
     return(
-        <div>
+        <main>
             <Helmet prioritizeSeoTags>
                 <title>My phonebook</title>
                 <meta property="og:title" content="My phonebook"/>
@@ -20,6 +20,6 @@ export default function Contacts(){
             <ContactList/>
             <ToastContainer position="top-center" theme="colored" />
             </Container>
-        </div>
+        </main>
     )
 }

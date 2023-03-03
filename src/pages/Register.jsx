@@ -6,7 +6,7 @@ export default function Register() {
   const { isLoadingAuth } = useAuth();
 
   return (
-    <div>
+    <main>
       <Helmet prioritizeSeoTags>
         <title>Registration of a new phonebook user</title>
         <meta
@@ -15,6 +15,6 @@ export default function Register() {
         />
       </Helmet>
       {isLoadingAuth ? <div>...User Registration</div> : <RegisterForm />}
-    </div>
+    </main>
   );
 }

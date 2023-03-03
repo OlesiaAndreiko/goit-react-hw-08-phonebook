@@ -6,12 +6,12 @@ export default function Login() {
   const { isLoadingAuth } = useAuth();
 
   return (
-    <div>
+    <main>
       <Helmet prioritizeSeoTags>
         <title>Login to my phonebook</title>
         <meta property="og:title" content="Login to my phonebook" />
       </Helmet>
       {isLoadingAuth ? <div>...Authorization check</div> : <LoginForm />}
-    </div>
+    </main>
   );
 }
