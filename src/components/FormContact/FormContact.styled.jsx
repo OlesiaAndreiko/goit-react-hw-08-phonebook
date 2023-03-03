@@ -9,6 +9,7 @@ export const Form = styled.form.attrs({ autoComplete: 'off' })`
   height: 280px;
   padding: 20px;
   border: 2px solid #2196f3;
+  border-radius: 6px;
   box-shadow: 0px 4px 4px rgb(0, 0, 0, 15%);
 `;
 
