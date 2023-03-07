@@ -8,7 +8,6 @@ import {
   Card,
   Text,
   CardBody,
-  Box,
 } from '@chakra-ui/react';
 import { DeleteIcon, PhoneIcon } from '@chakra-ui/icons';
 export const Contact = ({ contact }) => {
