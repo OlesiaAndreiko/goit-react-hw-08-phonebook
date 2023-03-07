@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const FilerWrap = styled.div`
   width: 538px;
-  height: 90px;
-  padding:0 20px 0;
+  height: 100px;
+  padding:10px 20px 10px;
   border-color: #e2e8f0;
   background-color: white;
   border-radius: 6px;
@@ -14,7 +14,8 @@ export const FieldCaption = styled.label`
   display: block;
   text-align: start;
   font-size: 1.25rem;
-  /* margin-bottom: 10px; */
+  line-height: 30px;
+  font-weight: 500;
 `;
 
 export const ContactInput = styled.input.attrs({ autoComplete: 'off' })`

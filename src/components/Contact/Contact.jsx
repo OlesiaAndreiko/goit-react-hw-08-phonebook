@@ -21,7 +21,7 @@ export const Contact = ({ contact }) => {
       <Card
         direction={{ base: 'column', md: 'row' }}
         noOfLines={[1, 2, 3]}
-        fontSize="23px"
+        fontSize="22px"
         key={id}
       >
         <CardBody display="flex" justifyContent='space-between' alignItems="center" gap={5} p={2}>
@@ -43,7 +43,7 @@ export const Contact = ({ contact }) => {
             aria-label='Delete contact'
             bg="#c6ccd1"
             color="#665959"
-            size='lg'
+            size='md'
             onClick={handleDelete}
           />
         </CardBody>

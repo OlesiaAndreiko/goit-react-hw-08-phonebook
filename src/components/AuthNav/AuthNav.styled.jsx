@@ -8,6 +8,6 @@ export const StaledLink = styled(NavLink)`
   font-weight: 700;
 
   &.active {
-    color: #2196f3;
+    color: #0088cc;
   }
 `;

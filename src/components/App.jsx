@@ -1,4 +1,4 @@
-// import { ToastContainer } from 'react-toastify';
+import { Flex, Spinner, Text } from '@chakra-ui/react';
 import { useAuth } from 'hooks';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -22,7 +22,10 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <div>Refreshing user...</div>
+    <Flex justify="center" align="center" gap={5} mt={30}>
+      <Spinner thickness="6px" color="blue.500" emptyColor="gray.200" size='xl'/>{' '}
+      <Text fontSize='30px'>Refreshing user...</Text>
+    </Flex>
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

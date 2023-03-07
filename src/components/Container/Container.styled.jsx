@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  /* max-width: 1200px; */
+position: relative;
+top: 70px;
   width: calc(100vw);
   min-width: 450px;
   min-height: calc(100vh - 50px);
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   font-size: 20px;
