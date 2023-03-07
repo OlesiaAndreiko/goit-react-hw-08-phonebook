@@ -10,6 +10,7 @@ import {
   FieldCaption,
   ContactInput,
 } from './FormContact.styled';
+import { Section } from 'components/Container/Container.styled';
 
 export const FormContact = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export const FormContact = () => {
   };
 
   return (
-    <>
+    <Section>
       <Heading title={'phonebook'}></Heading>
       <Form onSubmit={handleSubmit}>
         <FieldCaption htmlFor="name">
@@ -64,6 +65,6 @@ export const FormContact = () => {
         </FieldCaption>
         <BtnContact>Add Contact</BtnContact>
       </Form>
-    </>
+    </Section>
   );
 };

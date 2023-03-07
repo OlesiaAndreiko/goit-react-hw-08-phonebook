@@ -6,6 +6,7 @@ import { List } from './ContactList.staled';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/contacts.operations';
 import { selectErrorContacts, selectIsLoadingContacts } from 'redux/contacts/contacts.selectors';
+import { Section } from 'components/Container/Container.styled';
 
 export const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
@@ -18,7 +19,7 @@ export const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Section>
       <Heading title={'contacts'} />
       {isLoadingContacts && !errorContacts && <b>Request in progress...</b>}
       {contacts.length ? (
@@ -30,6 +31,6 @@ export const ContactList = () => {
       ) : (
         <p>Start adding contacts!</p>
       )}
-    </>
+    </Section>
   );
 };

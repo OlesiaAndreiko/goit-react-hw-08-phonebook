@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 
 export const Form = styled.form.attrs({ autoComplete: 'off' })`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 15px;
   width: 538px;
-  height: 280px;
-  padding: 20px;
-  border: 2px solid #2196f3;
+  height: 220px;
+  padding:0 20px 0;
+  border-color: #e2e8f0;
+  background-color: white;
   border-radius: 6px;
   box-shadow: 0px 4px 4px rgb(0, 0, 0, 15%);
 `;
@@ -17,8 +14,8 @@ export const BtnContact = styled.button.attrs({ type: 'submit' })`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 50px;
+  width: 150px;
+  height: 40px;
   font-family: inherit;
   font-weight: 700;
   font-size: 18px;
@@ -40,21 +37,27 @@ export const BtnContact = styled.button.attrs({ type: 'submit' })`
 export const FieldCaption = styled.label`
   display: block;
   margin-bottom: 10px;
+  text-align: start;
+  font-size: 1.25rem;
 `;
 
 export const ContactInput = styled.input`
   display: block;
-  width: 513px;
-  height: 20px;
+  width: 100%;
+  height: 2.5rem;
   padding: 12px;
-  font-size: 20px;
-  color: #757575;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  color: #1a202c;
+  background-color: #dce3ec;
+  outline: 2px solid transparent;
+  border-color: #dce3ec;
+  border: 1px solid transparent;
   border-radius: 4px;
-  outline: rgba(0, 0, 0, 0);
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus {
-    border-color: #2196f3;
+    border-color: #0088cc;
+    box-shadow: 0 0 0 1px #3182ce;
   }
 `;

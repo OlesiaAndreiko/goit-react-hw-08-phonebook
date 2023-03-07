@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectFilter } from 'redux/contacts/contacts.selectors';
 import { searchContact } from '../../redux/contacts/filter.slise';
 import { Heading } from 'components/Heading/Hading';
+import { Section } from 'components/Container/Container.styled';
 
 export const Filter = () => {
   const filter = useSelector(selectFilter);  
@@ -11,7 +12,7 @@ export const Filter = () => {
   const handleChange = event => dispatch(searchContact(event.target.value));
 
   return (
-    <>
+    <Section>
     <Heading title={'Search contacts'} />
     <FilerWrap>
       <FieldCaption htmlFor="search">
@@ -25,6 +26,6 @@ export const Filter = () => {
         />
       </FieldCaption>
     </FilerWrap>
-    </>
+    </Section>
   );
 };

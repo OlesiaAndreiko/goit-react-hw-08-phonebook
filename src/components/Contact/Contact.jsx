@@ -2,8 +2,15 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contacts.operations';
 // import { ItemContact, Fullname } from './Contact.styled';
-import { Button, Flex, Card, Heading, Text, Stack, CardBody } from '@chakra-ui/react';
-import { DeleteIcon, PhoneIcon} from '@chakra-ui/icons';
+import {
+  IconButton,
+  Flex,
+  Card,
+  Text,
+  CardBody,
+  Box,
+} from '@chakra-ui/react';
+import { DeleteIcon, PhoneIcon } from '@chakra-ui/icons';
 export const Contact = ({ contact }) => {
   const { id, name, number } = contact;
   const dispatch = useDispatch();
@@ -12,35 +19,35 @@ export const Contact = ({ contact }) => {
 
   return (
     <>
-      <Card direction={{ base: 'column', md: 'row' }}
-      maxW='md'
-      w={500}
-  overflow='hidden'
-  variant='outline'
-  display='flex' align='center'
-      
-      key={id}>
-         <Stack spacing='3'>
-         <CardBody display='flex' justify="center" align='center' gap={5}>
-        <Heading  size='lg'>{name}</Heading>
-        <Flex justify="center" align='center' gap={3}>
+      <Card
+        direction={{ base: 'column', md: 'row' }}
+        noOfLines={[1, 2, 3]}
+        fontSize="23px"
+        key={id}
+      >
+        <CardBody display="flex" justifyContent='space-between' alignItems="center" gap={5} p={2}>
+          
+          <Text noOfLines={[1, 2, 3]} w={300}>
+            {name}
+          </Text>
+
+          <Flex justify="flex-end" align="center" gap={3} >
+            
+          <Flex align="center" gap={5}>
           <PhoneIcon boxSize={5} color="blue.500"/>
-          <Text fontSize='lg'>{number}</Text>{' '}
-        </Flex>
-        <Button
-          rightIcon={<DeleteIcon />}
-          type="button"
-          // w={40}
-          // h={35}
-          justify="center" align='center'
-          bg="#c6ccd1"
-          color="#665959"
-          fontSize="large"
-          onClick={handleDelete}
-        >
-        </Button>
+          <Text>{number}</Text>{' '}
+          </Flex>    
+
+          </Flex>
+          <IconButton
+            icon={<DeleteIcon />}
+            aria-label='Delete contact'
+            bg="#c6ccd1"
+            color="#665959"
+            size='lg'
+            onClick={handleDelete}
+          />
         </CardBody>
-        </Stack>
       </Card>
     </>
   );
