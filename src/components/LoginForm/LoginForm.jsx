@@ -6,7 +6,7 @@ import {
   Button,
   Flex,
   FormControl,
-  FormErrorMessage,
+  // FormErrorMessage,
   FormLabel,
   Input,
   VStack,
@@ -15,7 +15,7 @@ import {
 export const LoginForm = () => {
   const dispatch = useDispatch();  
 
-  const handlerSubmit = (values, {resetForm}) => {
+  const handleSubmit = (values, {resetForm}) => {
     const { email, password } = values;
     dispatch(
       logIn({
@@ -35,13 +35,13 @@ export const LoginForm = () => {
             email: '',
             password: '',
           }}
-          onSubmit={handlerSubmit}
+          onSubmit={handleSubmit}
         >
-          {({ handleSubmit, errors, touched }) => (
-            <form onSubmit={handleSubmit}>
+          {() => (
+            <form >
               <VStack spacing={4} align="flex-start">
-                <FormControl onSubmit={handleSubmit} >
-                  <FormLabel htmlFor="email" fontSize='1.25rem' >Email Address</FormLabel>
+                <FormControl>
+                  <FormLabel htmlFor="email" fontSize='1.25rem'>Email Address</FormLabel>
                   <Field
                     as={Input}
                     type="email"
@@ -50,19 +50,13 @@ export const LoginForm = () => {
                     fontSize='1.25rem'
                   />
                 </FormControl>
-                <FormControl isInvalid={!!errors.password && touched.password}>
+                <FormControl >
                 <FormLabel htmlFor="password" fontSize='1.25rem'>Password</FormLabel>
                   <Field as={Input} 
                   type="password"
                   name="password"
                   fontSize='1.25rem'
-                  validate={(value) => {
-                    if (value.length <= 4) {
-                      return "Password should be over 4 characters";
-                    }
-                  }}
                   />
-                  <FormErrorMessage>{errors.password}</FormErrorMessage>
                 </FormControl>
                 <Button type="submit" colorScheme='telegram' w='full' >Log In</Button>
               </VStack>

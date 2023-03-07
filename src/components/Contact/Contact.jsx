@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contacts.operations';
-// import { ItemContact, Fullname } from './Contact.styled';
-import {
-  IconButton,
-  Flex,
-  Card,
-  Text,
-  CardBody,
-} from '@chakra-ui/react';
-import { DeleteIcon, PhoneIcon } from '@chakra-ui/icons';
+import { IconButton, Flex, Card, Text, CardBody } from '@chakra-ui/react';
+import { DeleteIcon, EditIcon, PhoneIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
+import { EditContact } from 'components/EditForm/EditForm';
+
 export const Contact = ({ contact }) => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+
+  const toggleModal = () => {
+    setIsOpenModal(isOpen => !isOpen);
+  };
+
   const { id, name, number } = contact;
   const dispatch = useDispatch();
 
@@ -24,29 +27,42 @@ export const Contact = ({ contact }) => {
         fontSize="22px"
         key={id}
       >
-        <CardBody display="flex" justifyContent='space-between' alignItems="center" gap={5} p={2}>
-          
+        <CardBody
+          display="flex"
+          justifyContent="flex-start"
+          alignItems="center"
+          gap={5}
+          p={2}
+        >
           <Text noOfLines={[1, 2, 3]} w={300}>
             {name}
           </Text>
 
-          <Flex justify="flex-end" align="center" gap={3} >
-            
-          <Flex align="center" gap={5}>
-          <PhoneIcon boxSize={5} color="blue.500"/>
-          <Text>{number}</Text>{' '}
-          </Flex>    
-
+          <Flex align="center" gap={5} w={250}>
+            <PhoneIcon boxSize={5} color="blue.500" />
+            <Text>{number}</Text>{' '}
           </Flex>
-          <IconButton
-            icon={<DeleteIcon />}
-            aria-label='Delete contact'
-            bg="#c6ccd1"
-            color="#665959"
-            size='md'
-            onClick={handleDelete}
-          />
+
+          <Flex align="center" gap={3}>
+            <IconButton
+              icon={<EditIcon />}
+              aria-label="Delete contact"
+              bg="#c6ccd1"
+              color="#665959"
+              size="md"
+              onClick={toggleModal}
+            />
+            <IconButton
+              icon={<DeleteIcon />}
+              aria-label="Delete contact"
+              bg="#c6ccd1"
+              color="#665959"
+              size="md"
+              onClick={handleDelete}
+            />
+          </Flex>
         </CardBody>
+        {isOpenModal && <EditContact onClose={toggleModal} editingContact={contact} />}
       </Card>
     </>
   );

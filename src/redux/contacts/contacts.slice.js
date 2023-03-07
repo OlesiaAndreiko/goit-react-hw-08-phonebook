@@ -3,9 +3,10 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
+  editContact,
 } from './contacts.operations';
 
-const extraActions = [fetchContacts, addContact, deleteContact];
+const extraActions = [fetchContacts, addContact, deleteContact, editContact];
 const getActions = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
@@ -28,6 +29,9 @@ const contactsSlice = createSlice({
           contact => contact.id === action.payload
         );
         state.items.splice(index, 1);
+      })
+      .addCase(editContact.fulfilled, (state, action) => {
+        state.items.map(contact => contact !== action.payload);
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoadingContacts = true;

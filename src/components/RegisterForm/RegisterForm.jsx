@@ -16,8 +16,6 @@ export const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handlerSubmit = (values, { resetForm }) => {
-    // event.preventDefault();
-    // const form = event.currentTarget;
     const { name, email, password } = values;
     dispatch(
       register({
@@ -34,6 +32,7 @@ export const RegisterForm = () => {
       <Box bg="white" p={6} rounded="md" w={500} h={380}>
         <Formik
           initialValues={{
+            name: '',
             email: '',
             password: '',
           }}
