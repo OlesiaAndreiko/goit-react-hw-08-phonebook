@@ -48,7 +48,7 @@ export const Contact = ({ contact }) => {
               icon={<EditIcon />}
               aria-label="Delete contact"
               bg="#c6ccd1"
-              color="#665959"
+              color="#212121"
               size="md"
               onClick={toggleModal}
             />

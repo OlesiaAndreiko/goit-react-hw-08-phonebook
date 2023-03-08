@@ -46,7 +46,7 @@ export const FormContact = () => {
           <ContactInput
             type="text"
             name="name"
-            pattern="^[a-zA-Z0-9-_.]+(([' -][a-zA-Z0-9-_. ])?[a-zA-Z0-9-_.]*)*$"
+            pattern="^[a-zA-Z0-9-А-Яа-я_.]+(([' -][a-zA-Z0-9-А-Яа-я_. ])?[a-zA-Z0-9-А-Яа-я_.]*)*$"
             placeholder="Letters or numbers. Can apostrophe, dash and spaces."
             title="Name may contain letters, numbers, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
