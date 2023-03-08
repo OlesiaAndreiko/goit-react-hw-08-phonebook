@@ -14,26 +14,30 @@ import {
 } from '@chakra-ui/react';
 import { Overlay } from 'components/Container/Container.styled';
 import { editContact } from 'redux/contacts/contacts.operations';
+import { refreshUser } from 'redux/auth/auth.operations';
 
 export const EditContact = ({ onClose, editingContact }) => {
   const { id, name, number } = editingContact;
   const dispatch = useDispatch();
 
-  // const handlerSubmit = (values, {resetForm}) => {
-  const handlerSubmit = event => {
-    event.preventDefault();
-    const form = event.target.elements;
+  const handlerSubmit = (values, {resetForm}) => {
+  // const handlerSubmit = event => {
+    // event.preventDefault();
+    // const form = event.target.elements;
+    const{nameEdit, numberEdit} = values;
     console.log(id)
     dispatch(
       editContact({
         id,
-        //...values,
-        ...{ name: form.nameEdit.value, number: form.numberEdit.value },
+        ...{name: nameEdit, number: numberEdit}
+        // ...values,
+        // ...{ name: form.nameEdit.value, number: form.numberEdit.value },
       })
     );
     onClose();
-    event.target.reset();
-    // resetForm();
+    // event.target.reset();
+    dispatch(refreshUser());
+    resetForm();
   };
 
   const onBackdropClose = event => {
@@ -77,9 +81,10 @@ export const EditContact = ({ onClose, editingContact }) => {
               nameEdit: name,
               numberEdit: number,
             }}
+            onSubmit={handlerSubmit}
           >
             {() => (
-              <Form  onSubmit={handlerSubmit}>
+              <Form>
                 <VStack spacing={4} align="flex-start">
                   <FormControl>
                     <FormLabel htmlFor="name" fontSize="1.25rem">

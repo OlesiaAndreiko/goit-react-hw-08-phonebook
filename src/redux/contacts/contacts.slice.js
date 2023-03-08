@@ -6,7 +6,7 @@ import {
   editContact,
 } from './contacts.operations';
 
-const extraActions = [fetchContacts, addContact, deleteContact];
+const extraActions = [fetchContacts, addContact, deleteContact, editContact];
 const getActions = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
