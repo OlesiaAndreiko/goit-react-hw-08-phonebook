@@ -31,8 +31,13 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1);
       })
       .addCase(editContact.fulfilled, (state, action) => {
-        console.log(action)
-        state.items.map(contact => contact !== action.payload);
+        state.items = state.items.map(contact => {
+          if (contact.id === action.payload.id) {
+            contact.name = action.payload.name;
+            contact.number = action.payload.number;
+          } 
+            return contact;          
+        });
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoadingContacts = true;

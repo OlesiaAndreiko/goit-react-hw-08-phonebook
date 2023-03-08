@@ -14,29 +14,22 @@ import {
 } from '@chakra-ui/react';
 import { Overlay } from 'components/Container/Container.styled';
 import { editContact } from 'redux/contacts/contacts.operations';
-import { refreshUser } from 'redux/auth/auth.operations';
 
 export const EditContact = ({ onClose, editingContact }) => {
   const { id, name, number } = editingContact;
   const dispatch = useDispatch();
 
   const handlerSubmit = (values, {resetForm}) => {
-  // const handlerSubmit = event => {
-    // event.preventDefault();
-    // const form = event.target.elements;
+
     const{nameEdit, numberEdit} = values;
-    console.log(id)
     dispatch(
       editContact({
         id,
         ...{name: nameEdit, number: numberEdit}
-        // ...values,
-        // ...{ name: form.nameEdit.value, number: form.numberEdit.value },
       })
     );
+
     onClose();
-    // event.target.reset();
-    dispatch(refreshUser());
     resetForm();
   };
 
@@ -60,8 +53,8 @@ export const EditContact = ({ onClose, editingContact }) => {
     };
   }, [onClose]);
 
-  return (
-    <Overlay onClick={onBackdropClose}>
+  return (   
+     <Overlay onClick={onBackdropClose}> 
       <Flex
         bg="gray.100"
         justify="center"
