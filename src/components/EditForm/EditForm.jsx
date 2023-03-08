@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik, Field } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Button,
@@ -19,14 +19,21 @@ export const EditContact = ({ onClose, editingContact }) => {
   const { id, name, number } = editingContact;
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
+  // const handlerSubmit = (values, {resetForm}) => {
+  const handlerSubmit = event => {
+    event.preventDefault();
+    const form = event.target.elements;
     // console.log(id)
-    dispatch(editContact({ 
-      id, 
-      ...values
-     }));
+    dispatch(
+      editContact({
+        id,
+        //...values,
+        ...{ name: form.nameEdit.value, number: form.numberEdit.value },
+      })
+    );
     onClose();
-    resetForm();
+    event.target.reset();
+    // resetForm();
   };
 
   const onBackdropClose = event => {
@@ -56,7 +63,7 @@ export const EditContact = ({ onClose, editingContact }) => {
         justify="center"
         alignItems="center"
         flexDirection="column"
-        p={10}
+        p={100}
         gap={5}
       >
         <Flex gap={5}>
@@ -70,10 +77,9 @@ export const EditContact = ({ onClose, editingContact }) => {
               nameEdit: name,
               numberEdit: number,
             }}
-            onSubmit={handleSubmit}
           >
             {() => (
-              <form>
+              <Form  onSubmit={handlerSubmit}>
                 <VStack spacing={4} align="flex-start">
                   <FormControl>
                     <FormLabel htmlFor="name" fontSize="1.25rem">
@@ -103,7 +109,7 @@ export const EditContact = ({ onClose, editingContact }) => {
                     Save Contact
                   </Button>
                 </VStack>
-              </form>
+              </Form>
             )}
           </Formik>
         </Box>
@@ -117,6 +123,6 @@ EditContact.propTypes = {
   editingContact: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
-    number: PropTypes.string,    
+    number: PropTypes.string,
   }).isRequired,
 };
