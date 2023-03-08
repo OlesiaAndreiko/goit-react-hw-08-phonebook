@@ -23,7 +23,7 @@ export const EditContact = ({ onClose, editingContact }) => {
   const handlerSubmit = event => {
     event.preventDefault();
     const form = event.target.elements;
-    // console.log(id)
+    console.log(id)
     dispatch(
       editContact({
         id,

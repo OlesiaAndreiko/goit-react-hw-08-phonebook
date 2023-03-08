@@ -6,7 +6,7 @@ import {
   editContact,
 } from './contacts.operations';
 
-const extraActions = [fetchContacts, addContact, deleteContact, editContact];
+const extraActions = [fetchContacts, addContact, deleteContact];
 const getActions = type => extraActions.map(action => action[type]);
 
 const contactsSlice = createSlice({
@@ -31,6 +31,7 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1);
       })
       .addCase(editContact.fulfilled, (state, action) => {
+        console.log(action)
         state.items.map(contact => contact !== action.payload);
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
