@@ -25,18 +25,21 @@ const contactsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
-          contact => contact.id === action.payload
+        state.items = state.items.filter(
+          contact => contact.id !== action.payload.id
         );
-        state.items.splice(index, 1);
+        // const index = state.items.findIndex(
+        //   contact => contact.id === action.payload
+        // );
+        // state.items.splice(index, 1);
       })
       .addCase(editContact.fulfilled, (state, action) => {
         state.items = state.items.map(contact => {
           if (contact.id === action.payload.id) {
             contact.name = action.payload.name;
             contact.number = action.payload.number;
-          } 
-            return contact;          
+          }
+          return contact;
         });
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {

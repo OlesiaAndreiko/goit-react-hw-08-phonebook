@@ -11,12 +11,14 @@ import {
 } from 'redux/contacts/contacts.selectors';
 import { Section } from 'components/Container/Container.styled';
 import { Skeleton, Stack, Text } from '@chakra-ui/react';
+import { useAuth } from 'hooks';
 
 export const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
   const isLoadingContacts = useSelector(selectIsLoadingContacts);
   const errorContacts = useSelector(selectErrorContacts);
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -24,22 +26,24 @@ export const ContactList = () => {
 
   return (
     <Section>
-      <Heading title={'contacts'}/>
+      <Heading title={'contacts'} />
+      
       {isLoadingContacts && !errorContacts && (
         <Stack w={500}>
           <Skeleton h="30px" />
           <Skeleton h="30px" />
           <Skeleton h="30px" />
         </Stack>
-      )} 
-      {contacts.length ? (
+      )}
+
+      {(!contacts.length && isRefreshing) ? (
+        <Text fontSize="22px">Start adding contacts!</Text>
+      ) : (
         <List>
           {contacts.map(contact => (
             <Contact key={contact.id} contact={contact} />
           ))}
         </List>
-      ) : (
-        <Text fontSize="22px">Start adding contacts!</Text>
       )}
     </Section>
   );
