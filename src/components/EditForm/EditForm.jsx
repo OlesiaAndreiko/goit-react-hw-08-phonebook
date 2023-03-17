@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { Formik, Form, Field } from 'formik';
+import * as yup from 'yup';
+import 'yup-phone';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik, Form, Field } from 'formik';
 import {
   Box,
   Button,
@@ -15,17 +17,28 @@ import {
 import { Overlay } from 'components/Container/Container.styled';
 import { editContact } from 'redux/contacts/contacts.operations';
 
+const validationSchemaContact = yup.object().shape({
+  nameEdit: yup
+    .string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  numberEdit: yup
+    .string()
+    // .phone()
+    .required('Required'),
+});
+
 export const EditContact = ({ onClose, editingContact }) => {
   const { id, name, number } = editingContact;
   const dispatch = useDispatch();
 
-  const handlerSubmit = (values, {resetForm}) => {
-
-    const{nameEdit, numberEdit} = values;
+  const handlerSubmit = (values, { resetForm }) => {
+    const { nameEdit, numberEdit } = values;
     dispatch(
       editContact({
         id,
-        ...{name: nameEdit, number: numberEdit}
+        ...{ name: nameEdit, number: numberEdit },
       })
     );
 
@@ -53,8 +66,8 @@ export const EditContact = ({ onClose, editingContact }) => {
     };
   }, [onClose]);
 
-  return (   
-     <Overlay onClick={onBackdropClose}> 
+  return (
+    <Overlay onClick={onBackdropClose}>
       <Flex
         bg="gray.100"
         justify="center"
@@ -68,15 +81,16 @@ export const EditContact = ({ onClose, editingContact }) => {
           <Text>{number}</Text>
         </Flex>
 
-        <Box bg="white" p={6} rounded="md" w={500} h={280}>
+        <Box bg="white" p={6} rounded="md" w={500} h="100%">
           <Formik
+            validationSchema={validationSchemaContact}
             initialValues={{
               nameEdit: name,
               numberEdit: number,
             }}
             onSubmit={handlerSubmit}
           >
-            {() => (
+            {({ errors, touched }) => (
               <Form>
                 <VStack spacing={4} align="flex-start">
                   <FormControl>
@@ -90,6 +104,11 @@ export const EditContact = ({ onClose, editingContact }) => {
                       variant="filled"
                       fontSize="1.25rem"
                     />
+                    {errors.nameEdit && touched.nameEdit ? (
+                      <Box fontSize="0.75rem" c="red">
+                        {errors.nameEdit}
+                      </Box>
+                    ) : null}
                   </FormControl>{' '}
                   <FormControl>
                     <FormLabel htmlFor="number" fontSize="1.25rem">
@@ -102,6 +121,11 @@ export const EditContact = ({ onClose, editingContact }) => {
                       variant="filled"
                       fontSize="1.25rem"
                     />
+                    {errors.numberEdit && touched.numberEdit ? (
+                      <Box fontSize="0.75rem" color="red">
+                        {errors.numberEdit}
+                      </Box>
+                    ) : null}
                   </FormControl>
                   <Button type="submit" colorScheme="telegram" w="full">
                     Save Contact
