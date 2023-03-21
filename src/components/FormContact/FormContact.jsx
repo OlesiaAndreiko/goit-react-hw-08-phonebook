@@ -57,7 +57,7 @@ export const FormContact = () => {
           <ContactInput
             type="tel"
             name="number"
-            pattern="[+ 0-9]{9,14}"
+            pattern="^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$"
             placeholder="Only digits from 9 to 14 characters. Can start with +."
             title="Phone number must be digits from 9 to 14 characters and can start with +"
             required
