@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
-import 'yup-phone';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -17,6 +16,8 @@ import {
 import { Overlay } from 'components/Container/Container.styled';
 import { editContact } from 'redux/contacts/contacts.operations';
 
+const validatePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+
 const validationSchemaContact = yup.object().shape({
   nameEdit: yup
     .string()
@@ -25,9 +26,10 @@ const validationSchemaContact = yup.object().shape({
     .required('Required'),
   numberEdit: yup
     .string()
-    // .phone()
+    .matches(validatePhoneNumber, 'Phone number is not valid')
     .required('Required'),
 });
+
 
 export const EditContact = ({ onClose, editingContact }) => {
   const { id, name, number } = editingContact;
@@ -109,7 +111,7 @@ export const EditContact = ({ onClose, editingContact }) => {
                         {errors.nameEdit}
                       </Box>
                     ) : null}
-                  </FormControl>{' '}
+                  </FormControl>
                   <FormControl>
                     <FormLabel htmlFor="number" fontSize="1.25rem">
                       Numder
