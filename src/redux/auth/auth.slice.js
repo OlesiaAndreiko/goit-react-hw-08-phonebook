@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './auth.operations';
+import { register, logIn, logOut, refreshUser, updateAvatar } from './auth.operations';
 
 const successfulActions = [register, logIn];
 const getActionsSuccess = type => successfulActions.map(action => action[type]);
@@ -8,7 +8,7 @@ const extraActionsUser = [register, logIn, logOut];
 const getActionsUser = type => extraActionsUser.map(action => action[type]);
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, avatar: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -38,6 +38,9 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.errorAuth = action.payload;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.user.avatar = action.payload.avatarUrl;
       })
       .addMatcher(
         isAnyOf(...getActionsSuccess('fulfilled')),

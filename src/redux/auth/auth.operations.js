@@ -90,3 +90,21 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const updateAvatar = createAsyncThunk(
+  'auth/avatar',
+  async (file, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+      console.log(file);
+      const responce = await axios.patch('/users/avatars', formData, {
+        headers: { 'content-type': 'multipart/form-data' },
+      });
+      console.log(responce.data);
+      return responce.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

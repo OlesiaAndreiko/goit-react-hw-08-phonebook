@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/auth.operations';
 import { useAuth } from 'hooks';
 import { Box, Flex, Text, Button } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export const UserMenu = () => {
     <Box p={4} marginLeft="auto">
       <Flex alignItems="center" gap={8}>
         <Text as="p" fontWeight={700} color="#2a363b">
+          <Link to="/profile">Profile</Link>
           Welcome,{' '}
           <Text as="span" color="#2196f3">
             {' '}
