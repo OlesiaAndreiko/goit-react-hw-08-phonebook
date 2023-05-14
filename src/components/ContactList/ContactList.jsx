@@ -41,7 +41,7 @@ export const ContactList = () => {
       ) : (
         <List>
           {contacts.map(contact => (
-            <Contact key={contact.id} contact={contact} />
+            <Contact key={contact._id} contact={contact} />
           ))}
         </List>
       )}

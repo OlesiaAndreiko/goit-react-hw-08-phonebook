@@ -32,8 +32,8 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {
-      const responce = await axios.delete(`/contacts/${contactId}`);
-      return responce.data;
+      await axios.delete(`/contacts/${contactId}`);
+      return contactId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -45,8 +45,8 @@ export const editContact = createAsyncThunk(
   'contacts/editContact',
   async (editingContact, thunkAPI) => {
     try {
-      const {id, name, number} = editingContact;
-      const responce = await axios.patch(`/contacts/${id}`, {name, number});
+      const {_id: contactId, name, number} = editingContact;
+      const responce = await axios.patch(`/contacts/${contactId}`, {name, number});
       return responce.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

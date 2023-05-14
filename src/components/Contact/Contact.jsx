@@ -14,7 +14,7 @@ export const Contact = ({ contact }) => {
     setIsOpenModal(isOpen => !isOpen);
   };
 
-  const { id, name, number } = contact;
+  const { _id: id, name, number } = contact;
   const dispatch = useDispatch();
 
   const handleDelete = () => dispatch(deleteContact(id));
@@ -70,7 +70,7 @@ export const Contact = ({ contact }) => {
 
 Contact.propTypes = {
   contact: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
   }).isRequired,

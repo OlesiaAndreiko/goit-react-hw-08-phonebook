@@ -32,14 +32,14 @@ const validationSchemaContact = yup.object().shape({
 
 
 export const EditContact = ({ onClose, editingContact }) => {
-  const { id, name, number } = editingContact;
+  const { _id, name, number } = editingContact;
   const dispatch = useDispatch();
 
   const handlerSubmit = (values, { resetForm }) => {
     const { nameEdit, numberEdit } = values;
     dispatch(
       editContact({
-        id,
+        _id,
         ...{ name: nameEdit, number: numberEdit },
       })
     );
@@ -145,7 +145,7 @@ export const EditContact = ({ onClose, editingContact }) => {
 EditContact.propTypes = {
   onClose: PropTypes.func.isRequired,
   editingContact: PropTypes.shape({
-    id: PropTypes.string,
+    _id: PropTypes.string,
     name: PropTypes.string,
     number: PropTypes.string,
   }).isRequired,

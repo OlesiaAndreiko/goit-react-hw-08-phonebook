@@ -26,7 +26,7 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(
-          contact => contact.id !== action.payload.id
+          contact => contact._id !== action.payload
         );
         // const index = state.items.findIndex(
         //   contact => contact.id === action.payload
@@ -35,7 +35,7 @@ const contactsSlice = createSlice({
       })
       .addCase(editContact.fulfilled, (state, action) => {
         state.items = state.items.map(contact => {
-          if (contact.id === action.payload.id) {
+          if (contact._id === action.payload._id) {
             contact.name = action.payload.name;
             contact.number = action.payload.number;
           }
